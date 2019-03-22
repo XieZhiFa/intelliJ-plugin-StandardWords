@@ -1,0 +1,59 @@
+<idea-plugin>
+    <id>com.msd.idea.plugin.standardWords</id>
+    <name>MSD Standard Words</name>
+    <vendor email="414638396@qq.com" url="https://github.com/XieZhiFa">谢志发</vendor>
+    <description><![CDATA[
+      <pre>
+      中文标准词语提示插件
+
+      本插件会对中文词语进行提示及检查
+      目前仅对 .java .jsp .html .xml .js 文件进行提示与检查
+
+      插件包含Times平台11501个标准词语, 后续升级为自动更新词条功能.
+      </pre>
+    ]]></description>
+
+    <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
+         on how to target different products -->
+    <!-- uncomment to enable plugin in all products
+    <depends>com.intellij.modules.lang</depends>
+    -->
+
+
+    <depends>com.intellij.modules.lang</depends>
+    <depends>com.intellij.modules.java</depends>
+    <depends>com.intellij.modules.xml</depends>
+    <depends>JavaScript</depends>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <!-- Add your extensions here -->
+        <annotator language="JAVA" implementationClass="com.msd.idea.plugin.java.JavaAnnotator"/>
+        <completion.contributor language="JAVA" implementationClass="com.msd.idea.plugin.java.JavaCompletionContributor"/>
+
+
+        <completion.contributor language="HTML" implementationClass="com.msd.idea.plugin.html.HTMLCompletionContributor"/>
+        <completion.contributor language="XML" implementationClass="com.msd.idea.plugin.html.XMLCompletionContributor"/>
+        <annotator language="XML" implementationClass="com.msd.idea.plugin.html.XmlAnnotator"/>
+
+
+        <completion.contributor language="JavaScript" implementationClass="com.msd.idea.plugin.js.JsCompletionContributor"/>
+        <annotator language="JavaScript" implementationClass="com.msd.idea.plugin.js.JavaStriptAnnotator"/>
+
+        <!--<psi.referenceContributor implementation="com.msd.idea.plugin.refrences.JavaReferenceContributor"/>-->
+
+
+        <toolWindow id="词条收集" secondary="true" icon="/jar-gray.png" anchor="right"
+                    factoryClass="com.msd.idea.plugin.awt.MyToolWindowFactory"/>
+    </extensions>
+
+    <actions>
+        <!-- Add your actions here -->
+    </actions>
+
+    <project-components>
+        <component>
+            <interface-class>com.msd.idea.plugin.component.MyProjectComponent</interface-class>
+            <implementation-class>com.msd.idea.plugin.component.MyProjectComponentImpl</implementation-class>
+        </component>
+    </project-components>
+</idea-plugin>
